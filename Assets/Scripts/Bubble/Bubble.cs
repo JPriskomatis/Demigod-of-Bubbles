@@ -11,16 +11,15 @@ public class Bubble : MonoBehaviour
     [Header("Force attributes")]
     [SerializeField] private float power;
 
-    private Rigidbody playerRB;
-    private Transform playerTransform;
+    //I made these static since we want all bubble prefabs
+    //to have access to them once the first bubble gets a 
+    //reference to them, so that we don't have to GetComponent
+    //everytime the player jumps in a bubble;
+    private static Rigidbody playerRB;
+    private static Transform playerTransform;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            BubbleAnimation();
-        }
-    }
+
+
     //Animation
     private void BubbleAnimation()
     {
@@ -32,6 +31,7 @@ public class Bubble : MonoBehaviour
 
     }
 
+    //Audio
     private void PlayerAudio()
     {
         AudioManager.instance.PlayAudio(bubbleAudio);
@@ -51,8 +51,12 @@ public class Bubble : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerRB = other.GetComponent<Rigidbody>();
-            playerTransform = other.GetComponent<Transform>();
+            if(playerRB == null)
+            {
+                playerRB = other.GetComponent<Rigidbody>();
+                playerTransform = other.GetComponent<Transform>();
+            }
+
             
             BubbleAnimation();
             BoostPlayer();
