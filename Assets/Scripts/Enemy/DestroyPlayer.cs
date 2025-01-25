@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DestroyPlayer : MonoBehaviour
 {
@@ -7,11 +8,13 @@ public class DestroyPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Killed player");
+            other.gameObject.SetActive(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (((1 << other.gameObject.layer) & _targetMaskToSlow.value) != 0)
         {
-            Destroy(other.gameObject);
+            Debug.Log("Found An enemy ! ");
+            Destroy(other.transform.parent.gameObject);
         }
     }
 }

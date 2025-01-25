@@ -28,9 +28,8 @@ public class Bubble : MonoBehaviour
     //Animation
     private void BubbleAnimation()
     {
-        //Move the bubble slowly for 2 seconds before disappearing;
+        
         bubbleTransform.DOScale(new Vector3(9.0f, 6.79f, 9f),1f);
-        //Move the bubble slowly for 2 seconds before disappearing;
         bubbleTransform.DOMoveY(bubbleTransform.position.y - 3f, 1f);
         StartCoroutine(DisableBubble());
 
@@ -40,6 +39,7 @@ public class Bubble : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         this.gameObject.SetActive(false);
+
     }
 
     //Audio
@@ -65,6 +65,7 @@ public class Bubble : MonoBehaviour
             if(playerRB == null)
             {
                 AudioManager.instance.PlayAudio(OnBubbleJump);
+                PlayerAudio();
                 playerRB = other.transform.GetComponent<Rigidbody>();
                 playerTransform = other.GetComponent<Transform>();
             }

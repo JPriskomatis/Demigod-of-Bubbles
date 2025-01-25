@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _groupBubbles;
     [SerializeField] private Animator _handsAnimator;
     [SerializeField] private AudioClip _bubbleShieldHolding;
+    [SerializeField] private Volume _globalVolume; 
+    private ScreenSpaceLensFlare _lensFlare; 
     private List<GameObject> _bubblesList = new List<GameObject>();
     private GameObject _instantiatedShield;
     private BubbleShield _currentShield;
@@ -20,10 +24,21 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
+        if (_globalVolume != null && _globalVolume.profile != null)
+        {
+            // Try to get the Screen Space Lens Flare component from the Volume Profile
+            if (_globalVolume.profile.TryGet<ScreenSpaceLensFlare>(out _lensFlare))
+            {
+                Debug.Log("Screen Space Lens Flare found!");
+            }
+            else
+            {
+                Debug.LogError("Screen Space Lens Flare not found in the Volume Profile!");
+            }
+        }
         _currentPowerUPTimer = 0f;
         _instantiatedShield = null;
-        _currentShield = null;
-        
+        _currentShield = null;    
     }
 
     void Update()
@@ -31,6 +46,7 @@ public class PlayerAttack : MonoBehaviour
         // If he has taken the PowerUP
         if (_isPowerful)
         {
+            _lensFlare.active = true;
             _currentPowerUPTimer += Time.deltaTime;
 
             // Check if timer is less than seconds to have powerUP
@@ -69,6 +85,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
+            _lensFlare.active = false;
             _currentPowerUPTimer = 0f;
             _currentShield = null;
         }  

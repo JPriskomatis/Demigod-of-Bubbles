@@ -15,10 +15,10 @@ MonoBehaviour:
   active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 14.55
+    m_Value: 6.33
   tintColor:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.9260709, b: 0.51886785, a: 1}
   bloomMip:
     m_OverrideState: 0
     m_Value: 1
