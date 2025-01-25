@@ -1,8 +1,12 @@
 using UnityEngine;
 
+[RequireComponent (typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
+
+    [Header("Components")]
+    [SerializeField] private AudioSource audioSource;
 
     private void Awake()
     {
@@ -14,5 +18,13 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+
+
+    public void PlayAudio(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }
