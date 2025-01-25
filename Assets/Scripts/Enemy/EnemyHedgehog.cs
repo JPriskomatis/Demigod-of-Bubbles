@@ -10,10 +10,7 @@ public class EnemyHedgehog : Enemy
 
     public override void AttackPlayer(Transform playerTransform)
     {
-        if (seePlayer)
-        {
-            anim.SetTrigger("Point");
-        }
+        anim.SetTrigger("Point");
     }
 
     //This function is called from the Animator as an event;
@@ -35,5 +32,7 @@ public class EnemyHedgehog : Enemy
         }
 
         transform.position = targetPos;
+
+        Destroy(gameObject, 2f);
     }
 }
