@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private float _currentTimer;
     private float _multiplier = 0f;
 
+    [Header("Dash Components")]
+    [SerializeField] private AudioClip dashClip;
+    [SerializeField] private GameObject dashUI;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -82,6 +86,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 dashDirection = new Vector3(_orientation.forward.x, 0, _orientation.forward.z).normalized;
         _rigidbody.AddForce(dashDirection * dashForce, ForceMode.Impulse);
+        StartCoroutine(DisplayDash());
     }
-    
+
+    IEnumerator DisplayDash()
+    {
+        dashUI.SetActive(true);
+        AudioManager.instance.PlayAudio(dashClip);
+        yield return new WaitForSeconds(0.75f);
+        dashUI.SetActive(false);
+    }
+
+
 }
