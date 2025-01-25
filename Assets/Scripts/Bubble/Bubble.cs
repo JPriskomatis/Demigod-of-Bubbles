@@ -7,6 +7,7 @@ public class Bubble : MonoBehaviour
     [Header("Bubble's Components")]
     [SerializeField] Transform bubbleTransform;
     [SerializeField] AudioClip bubbleAudio;
+    [SerializeField] AudioClip OnBubbleJump;
 
     [Header("Force attributes")]
     [SerializeField] private float power;
@@ -54,7 +55,7 @@ public class Bubble : MonoBehaviour
         {
             if(playerRB == null)
             {
-                
+                AudioManager.instance.PlayAudio(OnBubbleJump);
                 playerRB = other.transform.GetComponent<Rigidbody>();
                 playerTransform = other.GetComponent<Transform>();
             }
