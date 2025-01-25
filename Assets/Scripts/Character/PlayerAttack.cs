@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float maxSecondsToHavePowerUP;
     [SerializeField] private Transform _orientation;
     [SerializeField] private Transform _groupBubbles;
+    [SerializeField] private Animator _handsAnimator;
     private List<GameObject> _bubblesList = new List<GameObject>();
     private GameObject _instantiatedShield;
     private BubbleShield _currentShield;
@@ -37,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
                 // If Mouse Button Down
                 if (Input.GetMouseButtonDown(0))
                 {
+                    _handsAnimator.SetBool("SpawnBubble", true);
                     Debug.Log("Down");
                     // Create Bubble
                     // And Move bubble accordingly to Camera Orientation
@@ -48,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     Debug.Log("Up");
+                    _handsAnimator.SetBool("SpawnBubble", false);
                     // Then shoot Nail if it is nail
                     _currentShield.ShootNail();
                     // Set the bubble to a group and add it to list
@@ -75,14 +78,11 @@ public class PlayerAttack : MonoBehaviour
     }
     public void SetHimToPowerless()
     {
+        _handsAnimator.SetBool("SpawnBubble", false);
         // Stop PowerUP
         _isPowerful = false;
-
-        // DESTROY ALL Bubbles
-        foreach (var bubble in _bubblesList)
-        {
-            bubble.SetActive(false);
-        }
+        _bubblesList.Clear();
+        
         for (int i=0;i<_groupBubbles.childCount;i++)
         {
             Destroy(_groupBubbles.GetChild(i).gameObject);
