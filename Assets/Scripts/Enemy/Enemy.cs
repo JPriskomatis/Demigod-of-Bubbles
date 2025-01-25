@@ -5,11 +5,12 @@ public abstract class Enemy : MonoBehaviour
 {
     [Header("Enemy Components")]
     [SerializeField] protected Animator anim;
-    [SerializeField] AudioClip clip;
+    [SerializeField] protected AudioClip clip;
 
     [Header("Enemy Attributes")]
     [SerializeField] protected float attackSpeed;
 
+    protected Vector3 playerPos;
     protected bool seePlayer;
     protected Transform playerTransform;
     protected bool tookPlayersPos;

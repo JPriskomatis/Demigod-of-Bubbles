@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHedgehog : Enemy
 {
-    Vector3 playerPos;
+    
 
 
     public override void AttackPlayer(Transform playerTransform)
