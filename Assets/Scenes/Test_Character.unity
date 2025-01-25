@@ -2549,6 +2549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 87478846}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 0}
   power: 25
 --- !u!23 &87478844
 MeshRenderer:
@@ -6345,6 +6346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 267495871}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 0}
   power: 25
 --- !u!23 &267495869
 MeshRenderer:
@@ -21782,6 +21784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 850966899}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 0}
   power: 25
 --- !u!23 &850966897
 MeshRenderer:
@@ -22554,6 +22557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 904449733}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 0}
   power: 25
 --- !u!23 &904449731
 MeshRenderer:
@@ -54400,8 +54404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0133315840b1745932491141538ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivityX: 800
-  _sensitivityY: 800
+  _mouseSensitivityController: {fileID: 0}
   _orientation: {fileID: 1346066953}
 --- !u!1 &2123637355
 GameObject:
@@ -55042,6 +55045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 6299402969629442573}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 0}
   power: 25
 --- !u!23 &4936727083510279790
 MeshRenderer:

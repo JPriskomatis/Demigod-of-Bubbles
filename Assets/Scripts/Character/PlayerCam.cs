@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    [SerializeField] private float _sensitivityX;
-    [SerializeField] private float _sensitivityY;
-
+    [SerializeField] private MenuSettings _mouseSensitivityController;
     [SerializeField] private Transform _orientation;
 
     private float _xRotation;
@@ -13,28 +11,37 @@ public class PlayerCam : MonoBehaviour
     private float _mouseX;
     private float _mouseY;
 
-
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Remove Cursor
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     private void Update()
     {
-        // Take mouse Axis with sensitivity
-        _mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * _sensitivityX;
-        _mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * _sensitivityY;
+        if (_mouseSensitivityController == null)
+        {
+            Debug.LogError("MouseSensitivityController is not assigned!");
+            return;
+        }
+
+        // Get sensitivity values from MouseSensitivityController
+        float sensitivityX = _mouseSensitivityController.mouseSensitivity;
+        float sensitivityY = _mouseSensitivityController.mouseSensitivity;
+
+        // Take mouse axis with sensitivity
+        _mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX;
+        _mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY;
 
         _yRotation += _mouseX;
         _xRotation -= _mouseY;
 
-        // Clamp it
+        // Clamp xRotation
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
-        // and set it to camera
-        transform.rotation = Quaternion.Euler(_xRotation,_yRotation,0);
+        // Apply rotation to camera and orientation
+        transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         _orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
-
     }
 }
