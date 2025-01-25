@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (_rigidbody.linearVelocity.y < -1)
         {
             _currentTimer += Time.deltaTime;
-            Debug.Log(_currentTimer);
+            //Debug.Log(_currentTimer);
             // If timer is greater than Max seconds
             if (_currentTimer > maxSeconds)
             {

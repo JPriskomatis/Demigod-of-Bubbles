@@ -24,8 +24,9 @@ public class Bubble : MonoBehaviour
     private void BubbleAnimation()
     {
         //Move the bubble slowly for 2 seconds before disappearing;
-        bubbleTransform.DOMoveY(bubbleTransform.position.y -0.3f, 2f).
-            OnComplete(() => PlayerAudio());
+        bubbleTransform.DOScale(new Vector3(4.6092f, 3.3409f, 4.52855f),1f);
+        //Move the bubble slowly for 2 seconds before disappearing;
+        bubbleTransform.DOMoveY(bubbleTransform.position.y - 3f, 1f);
 
         Destroy(gameObject, 2f);
 
@@ -43,17 +44,18 @@ public class Bubble : MonoBehaviour
         //First reset the velocity so our player don't becomes a rocket;
         playerRB.linearVelocity = Vector3.zero;
         //We get the player's rigidbody;
-        playerRB.AddForce(playerTransform.up * power);
+        playerRB.AddForce(playerTransform.up * power,ForceMode.Impulse);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == 6)
         {
             if(playerRB == null)
             {
-                playerRB = other.GetComponent<Rigidbody>();
+                
+                playerRB = other.transform.GetComponent<Rigidbody>();
                 playerTransform = other.GetComponent<Transform>();
             }
 

@@ -6,7 +6,7 @@ public class PowerUP : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            other.gameObject.transform.parent.GetComponent<PlayerAttack>().SetHimToPowerful();
+            other.gameObject.transform.GetComponent<PlayerAttack>().SetHimToPowerful();
             Destroy(gameObject);
         }
     }
