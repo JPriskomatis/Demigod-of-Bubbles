@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 
@@ -19,18 +20,26 @@ public class Bubble : MonoBehaviour
     private static Rigidbody playerRB;
     private static Transform playerTransform;
 
-
+    void Awake()
+    {
+        bubbleTransform.DOMoveY(bubbleTransform.position.y - 1f, 1f).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.InOutSine);
+    }
 
     //Animation
     private void BubbleAnimation()
     {
         //Move the bubble slowly for 2 seconds before disappearing;
-        bubbleTransform.DOScale(new Vector3(4.6092f, 3.3409f, 4.52855f),1f);
+        bubbleTransform.DOScale(new Vector3(9.0f, 6.79f, 9f),1f);
         //Move the bubble slowly for 2 seconds before disappearing;
         bubbleTransform.DOMoveY(bubbleTransform.position.y - 3f, 1f);
+        StartCoroutine(DisableBubble());
 
-        Destroy(gameObject, 2f);
+    }
 
+    IEnumerator DisableBubble()
+    {
+        yield return new WaitForSeconds(2f);
+        this.gameObject.SetActive(false);
     }
 
     //Audio

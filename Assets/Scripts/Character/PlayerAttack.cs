@@ -76,6 +76,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetHimToPowerful()
     {
+        _currentPowerUPTimer = 0;
         _isPowerful = true;
     }
     public void SetHimToPowerless()

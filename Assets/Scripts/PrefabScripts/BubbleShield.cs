@@ -33,6 +33,7 @@ public class BubbleShield : MonoBehaviour
     }
     private void SlowObject(GameObject objectToSlow)
     {
+        Debug.Log(objectToSlow.name);
         objectToSlow.GetComponent<Rigidbody>().linearVelocity *= _slowFactor;
     }
     public void ShootNail()
