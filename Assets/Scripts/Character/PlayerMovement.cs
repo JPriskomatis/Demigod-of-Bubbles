@@ -83,4 +83,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dashDirection = new Vector3(_orientation.forward.x, 0, _orientation.forward.z).normalized;
         _rigidbody.AddForce(dashDirection * dashForce, ForceMode.Impulse);
     }
+    void OnColliderEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

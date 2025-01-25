@@ -45,6 +45,7 @@ public class EnemyScissorhands : Enemy
         }
 
         scissor.transform.position = targetPos;
+        scissor.gameObject.SetActive(false);
     }
 
     public void ResetPlayerPos()

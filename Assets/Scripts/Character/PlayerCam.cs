@@ -20,11 +20,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        if (_mouseSensitivityController == null)
-        {
-            Debug.LogError("MouseSensitivityController is not assigned!");
-            return;
-        }
+        
 
         // Get sensitivity values from MouseSensitivityController
         float sensitivityX = _mouseSensitivityController.mouseSensitivity;
