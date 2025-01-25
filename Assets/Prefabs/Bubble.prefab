@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTransform: {fileID: 6299402969720130507}
   bubbleAudio: {fileID: 8300000, guid: 9e76b6dd4ae5b8a44aade8b600a0a617, type: 3}
+  OnBubbleJump: {fileID: 8300000, guid: 73321abd338bc444f809ed7d7bd6ddb7, type: 3}
   power: 25
 --- !u!65 &7418330916735444219
 BoxCollider:
