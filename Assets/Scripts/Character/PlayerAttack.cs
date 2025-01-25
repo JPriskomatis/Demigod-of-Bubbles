@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _orientation;
     [SerializeField] private Transform _groupBubbles;
     [SerializeField] private Animator _handsAnimator;
+    [SerializeField] private AudioClip _bubbleShieldHolding;
     private List<GameObject> _bubblesList = new List<GameObject>();
     private GameObject _instantiatedShield;
     private BubbleShield _currentShield;
@@ -45,6 +46,7 @@ public class PlayerAttack : MonoBehaviour
                     _instantiatedShield = Instantiate(_shieldBubble, _targetPoint);
                     _currentShield = _instantiatedShield.GetComponent<BubbleShield>();
                     _currentShield.SetOrientation(_orientation);
+                    AudioManager.instance.PlayAudio(_bubbleShieldHolding);
                 }
                 // If Mouse Button UP
                 if (Input.GetMouseButtonUp(0))

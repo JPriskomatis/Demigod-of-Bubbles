@@ -5,11 +5,14 @@ public class BubbleShield : MonoBehaviour
     [SerializeField] private float _slowFactor;
     [SerializeField] private LayerMask _targetMaskToSlow;
     [SerializeField] private float _nailBackForce;
+    [SerializeField] private AudioClip _bubbleCreation;
+    [SerializeField] private AudioClip _bubbleDestruction;
     private Transform _playerOrientation;
     private GameObject _nailProjectile;
 
     void Start()
     {
+        AudioManager.instance.PlayAudio(_bubbleCreation);
         _nailProjectile = null;
     }
 
@@ -40,6 +43,7 @@ public class BubbleShield : MonoBehaviour
             Vector3 nailDirection = new Vector3(_playerOrientation.forward.x, _playerOrientation.forward.y, _playerOrientation.forward.z).normalized;
             _nailProjectile.GetComponent<Rigidbody>().AddForce(nailDirection * _nailBackForce, ForceMode.Impulse);
             this.gameObject.SetActive(false);
+            AudioManager.instance.PlayAudio(_bubbleDestruction);
             _playerOrientation = null;
         }
     }
@@ -47,6 +51,10 @@ public class BubbleShield : MonoBehaviour
     public void SetOrientation(Transform currentOrientation)
     {
         _playerOrientation = currentOrientation;
+    }
+    void OnDestroy()
+    {
+        AudioManager.instance.PlayAudio(_bubbleDestruction);
     }
 
 }

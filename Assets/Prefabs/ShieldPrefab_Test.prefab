@@ -105,6 +105,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _nailBackForce: 100
+  _bubbleCreation: {fileID: 8300000, guid: 4ce9da306bd63dc4d8a4e676b42b2269, type: 3}
+  _bubbleDestruction: {fileID: 8300000, guid: c407e6acd4793c54db87c95a9bb9cde3, type: 3}
 --- !u!135 &4773555712357295337
 SphereCollider:
   m_ObjectHideFlags: 0
