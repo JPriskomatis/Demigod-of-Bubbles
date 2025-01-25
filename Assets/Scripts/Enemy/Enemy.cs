@@ -8,10 +8,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] AudioClip clip;
 
     [Header("Enemy Attributes")]
-    [SerializeField] float attackSpeed;
+    [SerializeField] protected float attackSpeed;
 
     protected bool seePlayer;
-    private Transform playerTransform;
+    protected Transform playerTransform;
 
     //This is the vision range of each enemy (the collider)
     private void OnTriggerEnter(Collider other)
