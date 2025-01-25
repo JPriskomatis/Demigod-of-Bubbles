@@ -9,7 +9,7 @@ public class EnemyHedgehog : Enemy
     {
         if (seePlayer)
         {
-            transform.LookAt(playerTransform);
+            anim.SetTrigger("Point");
         }
     }
 }

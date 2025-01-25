@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
     [Header("Enemy Components")]
-    [SerializeField] Animator anim;
+    [SerializeField] protected Animator anim;
     [SerializeField] AudioClip clip;
 
     [Header("Enemy Attributes")]
@@ -17,12 +18,23 @@ public abstract class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("sdf");
+            
             seePlayer = true;
             playerTransform = other.transform;
+
+            StartCoroutine(LookingAtPlayer(playerTransform));
             AttackPlayer(playerTransform);
         }
 
+    }
+
+    IEnumerator LookingAtPlayer(Transform playerTransform)
+    {
+        while (seePlayer)
+        {
+            transform.LookAt(playerTransform);
+            yield return null;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
