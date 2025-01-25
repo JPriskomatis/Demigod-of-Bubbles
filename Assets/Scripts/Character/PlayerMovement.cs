@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
 
-    [SerializeField] private float dashForce = 50f;
+    [SerializeField] private float dashForce;
     [SerializeField] private float _movementForce;
     [SerializeField] private float _gravityForceSpeed;
     [SerializeField] private Transform _orientation;
@@ -27,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        // Get Input Raw WASD
         MyInput();
-        Vector3 moveForce = new Vector3(_horizontalInput, 0, _verticalInput) * _movementForce;
+
+        // If pressed Space Dash
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DashPlayer();
@@ -37,16 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Handle Movement with forces through taken Input
         MovePlayer();
 
+        // Check if he is falling
         if (_rigidbody.linearVelocity.y < -1)
         {
             _currentTimer += Time.deltaTime;
             Debug.Log(_currentTimer);
+            // If timer is greater than Max seconds
             if (_currentTimer > maxSeconds)
             {
                 Debug.Log("AddForce");
-                // Add Force
+                // Then Multiply Force To give the feeling that player is falling more and more
                 _multiplier += 0.005f;
                 Vector3 boost = (-transform.up) * (_gravityForceSpeed+ _multiplier);
                 Debug.Log(boost);
@@ -58,8 +63,6 @@ public class PlayerMovement : MonoBehaviour
             _multiplier = 0f;
             _currentTimer = 0;
         }
-
-        
     }
 
     private void MyInput()

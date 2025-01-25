@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1327251134260683501}
   - component: {fileID: 1707427744153309526}
   - component: {fileID: 7024205959637919762}
-  - component: {fileID: 4201909178847487263}
+  - component: {fileID: 6272323917384021116}
+  - component: {fileID: 7578575832428164770}
   m_Layer: 0
   m_Name: ShieldPrefab_Test
   m_TagString: Untagged
@@ -87,7 +88,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4201909178847487263
+--- !u!114 &6272323917384021116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3385331528651135140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c592ea59c402c49a6a4af77522a2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slowFactor: 0.5
+  _targetMaskToSlow:
+    serializedVersion: 2
+    m_Bits: 128
+  _nailBackForce: 100
+--- !u!136 &7578575832428164770
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +120,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
