@@ -14,9 +14,11 @@ public abstract class Enemy : MonoBehaviour
     protected bool seePlayer;
     protected Transform playerTransform;
     protected bool tookPlayersPos;
+    protected bool isAttacking;
+
 
     //This is the vision range of each enemy (the collider)
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -25,11 +27,23 @@ public abstract class Enemy : MonoBehaviour
             playerTransform = other.transform;
 
             StartCoroutine(LookingAtPlayer(playerTransform));
-            AttackPlayer(playerTransform);
+            if (!isAttacking)
+            {
+                StartCoroutine(AttackPlayerCoroutine());
+            }
         }
 
     }
-
+    private IEnumerator AttackPlayerCoroutine()
+    {
+        isAttacking = true;
+        while (seePlayer)
+        {
+            AttackPlayer(playerTransform);
+            yield return new WaitForSeconds(2f);
+        }
+        isAttacking = false;
+    }
     IEnumerator LookingAtPlayer(Transform playerTransform)
     {
         while (seePlayer)
