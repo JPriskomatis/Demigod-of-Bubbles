@@ -60,12 +60,16 @@ public class Bubble : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.layer == 6)
         {
-            if(playerRB == null)
+            this.gameObject.GetComponent<AudioSource>().clip = OnBubbleJump;
+            this.gameObject.GetComponent<AudioSource>().Play();
+            if (playerRB == null)
             {
-                AudioManager.instance.PlayAudio(OnBubbleJump);
-                PlayerAudio();
+                //AudioManager.instance.PlayAudio(OnBubbleJump);
+                //PlayerAudio();
+                
                 playerRB = other.transform.GetComponent<Rigidbody>();
                 playerTransform = other.GetComponent<Transform>();
             }
