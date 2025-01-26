@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 8301938449434838116}
   clip: {fileID: 8300000, guid: e9d774840bd301648805bea27954c034, type: 3}
-  attackSpeed: 10
+  attackSpeed: 100
   spawnPoint: {fileID: 8446094624541368396}
 --- !u!1 &1401347909980357050
 GameObject:
